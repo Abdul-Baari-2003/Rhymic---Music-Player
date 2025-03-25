@@ -15,8 +15,6 @@ const image = document.getElementById('cover'),
     
 
 const music = new Audio();
-const apiUrl = "https://rhymic-music-player.onrender.com/api/songs";
-
 
 const songs = [];
 // Add loading spinner logic

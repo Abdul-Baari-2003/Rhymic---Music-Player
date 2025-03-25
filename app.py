@@ -92,6 +92,10 @@ def serve_assets(filename):
 def serve_file(filename):
     return send_from_directory(app.static_folder, filename)
 
+@app.route('/')
+def home():
+    return app.send_static_file('index.html')  # Serves index.html as the homepage
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))  # Use Render's port or fallback to 5000 locally
     app.run(host='0.0.0.0', port=port)

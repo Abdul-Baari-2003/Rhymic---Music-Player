@@ -76,13 +76,20 @@ def manifest():
 def service_worker():
     return app.send_static_file('service-worker.js')
 
+# Serve song data to frontend
 @app.route('/api/songs', methods=['GET'])
 def get_songs():
     return jsonify(songs)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# Route to serve assets (songs and images)
+@app.route('/assets/<path:filename>')
+def serve_assets(filename):
+    return send_from_directory('assets', filename)
 
+# Default route to serve other static files
 @app.route('/<path:filename>')
 def serve_file(filename):
     return send_from_directory(app.static_folder, filename)
+
+if __name__ == '__main__':
+    app.run(debug=True)
